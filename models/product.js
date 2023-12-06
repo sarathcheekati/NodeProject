@@ -29,7 +29,6 @@ module.exports = class Product {
         console.log(err);
       });
     });
-    fs.readFile(p, (error, fileContent) => {});
   }
 
   static fetchAll(cb) {
