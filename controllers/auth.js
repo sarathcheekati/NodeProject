@@ -1,5 +1,15 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+  host: "sandbox.smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "b4148b782a4b89",
+    pass: "09e8f4eb09a099",
+  },
+});
 
 exports.getLogin = (req, res, next) => {
   //const isLoggedIn = req.get("Cookie")?.split("=")[1].trim() === "true";
@@ -78,11 +88,21 @@ exports.postSignup = (req, res, next) => {
         })
         .then((result) => {
           res.redirect("/login");
+          return transporter
+            .sendMail({
+              to: email,
+              from: "cheekatisarath@gmail.com",
+              subject: "Sign-up Successful",
+              html: "<h1>you have signed up successfully!</h1>",
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         });
     })
 
     .catch((error) => {
-      console.log(error);
+      console.log("sendgrid error is", error);
     });
 };
 exports.getSignup = (req, res, next) => {

@@ -24,6 +24,8 @@
     "express-session": "^1.17.3",
     "mongodb": "^6.3.0",
     "mongoose": "^8.0.3",
+    "nodemailer": "^6.9.7",
+    "nodemailer-sendgrid-transport": "^0.2.0",
     "pug": "^3.0.2"
   }
 }
