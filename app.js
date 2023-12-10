@@ -51,26 +51,8 @@ app.use(errorController.get404);
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
-    User.findOne()
-      .then((user) => {
-        if (!user) {
-          const user = new User({
-            name: "sarath",
-            email: "cheekatisarath@gmail.com",
-            cart: {
-              items: [],
-            },
-          });
-          user.save();
-        }
-      })
-      .catch((error) =>
-        console.log("error occured when fetching user details,", error.message)
-      );
-
     console.log("Connected to the Database successfully");
     app.listen(3000);
-
     console.log(
       "Server started and listening for the requests on the localhost port 3000"
     );
