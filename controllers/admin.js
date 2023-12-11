@@ -80,7 +80,7 @@ exports.postEditProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next) => {
   console.log(req);
-  Product.find({ userId: req.user._id })
+  Product.findOne({ userId: req.user._id })
     // .select('title price -_id')
     // .populate('userId', 'name')
     .then((products) => {
